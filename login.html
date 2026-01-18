@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МОЙ ДНЕВНИК - Вход</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Навигация */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            box-sizing: border-box;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .btn-login {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                <i class="fas fa-book"></i>
+                <span>МОЙ ДНЕВНИК</span>
+            </div>
+            <ul class="nav-links">
+                <li class="menu-close"><a href="javascript:void(0)" class="close-button">Назад</a></li>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="diary.html">Дневник</a></li>
+                <li><a href="marks.html">Оценки</a></li>
+                <li><a href="contacts.html">О нас</a></li>
+            </ul>
+            <div class="nav-right">
+                <!-- Бургер-меню -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="user-actions">
+                    <a href="register.html" class="btn btn-outline">Регистрация</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div style="max-width: 400px; margin: 0 auto;">
+            <h1 class="page-title" style="text-align: center;">Вход в систему</h1>
+
+            <div class="card">
+                <form>
+                    <div class="form-group">
+                        <label for="login" class="form-label">Email или логин</label>
+                        <input type="text" id="login" class="form-control" placeholder="Введите ваш email или логин">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" id="password" class="form-control" placeholder="Введите ваш пароль">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role" class="form-label">Выберите роль</label>
+                        <select id="role" class="form-control">
+                            <option value="student">Ученик</option>
+                            <option value="teacher">Учитель</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-login" style="width: 100%;">Войти</button>
+                </form>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="#" style="color: var(--primary); text-decoration: none;">Забыли пароль?</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p>Еще нет аккаунта? <a href="register.html"
+                        style="color: var(--primary); text-decoration: none;">Зарегистрироваться</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-book"></i>
+                        <span>МОЙ ДНЕВНИК</span>
+                    </div>
+                    <p>Современная платформа для управления учебным процессом, объединяющая учеников, учителей и
+                        родителей.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Продукт</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#for-whom">Для кого</a></li>
+                        <li><a href="#pricing">Тарифы</a></li>
+                        <li><a href="#">Демо-версия</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">База знаний</a></li>
+                        <li><a href="#">Сообщество</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 МОЙ ДНЕВНИК. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

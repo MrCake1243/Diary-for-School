@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МОЙ ДНЕВНИК - Дневник</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Навигация */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            box-sizing: border-box; /* важно! */
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* Основной контент */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+
+        .week-navigation {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .week-display {
+            font-size: 1.2rem;
+            font-weight: 500;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .date-selector {
+            position: relative;
+        }
+
+        .date-selector-btn {
+            background: white;
+            border: none;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .date-selector-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .date-selector-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+            margin-top: 0.5rem;
+            min-width: 300px;
+            display: none;
+        }
+
+        .date-selector.open .date-selector-dropdown {
+            display: block;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .calendar-nav-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f5f7fb;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calendar-nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .date-selector-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-weekday {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray);
+            padding: 0.5rem;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .calendar-day:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-day.current {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: var(--gray);
+        }
+
+        /* Дни недели */
+        .week-days {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0.8rem;
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+        }
+
+        .day-title {
+            font-size: 1.7rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .day-date {
+            font-size: 1.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .lessons-container {
+            flex: 1;
+            min-width: 0;
+            padding: 0rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0rem;
+            border: var(--grid-color) 2px solid;
+            border-left: none;
+            border-radius: 0 10px 10px 0; 
+        }
+
+        .lesson {
+            display: grid;
+            flex-grow: 1;
+            grid-template-columns: 250px 1fr 80px;
+            gap: 0rem;
+            padding: 0 1rem 0 1rem;
+            border-bottom: 1px solid var(--grid-color);
+            align-items: center;
+        }
+
+        .lesson:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-time-subject {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lesson-time {
+            font-weight: 500;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .lesson-subject {
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        .lesson-teacher {
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        .lesson-homework {
+            font-size: 1.5rem;
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .no-homework {
+            color: var(--gray);
+        }
+
+        .lesson-grade {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grade-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .grade-1 { background: var(--grade-1-2); }
+        .grade-2 { background: var(--grade-1-2); }
+        .grade-3 { background: var(--grade-3); }
+        .grade-4 { background: var(--grade-4); }
+        .grade-5 { background: var(--grade-5); }
+
+        .empty-day {
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            gap: 2rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .lesson {
+                grid-template-columns: 110px 1fr 70px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .lesson {
+                grid-template-columns: 100px 1fr 60px;
+                gap: 0.8rem;
+                padding: 0.8rem;
+            }
+            
+            .lesson-time {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-subject {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {   
+            .lesson {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .lesson-time-subject {
+                order: 1;
+            }
+            
+            .lesson-homework {
+                order: 3;
+                justify-content: center;
+            }
+            
+            .lesson-grade {
+                order: 2;
+                justify-content: center;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .week-navigation {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .date-selector-dropdown {
+                right: auto;
+                left: 0;
+                min-width: 100%;
+            }
+            
+            .day-header {
+                min-width: 40px;
+                padding: 1rem 0.5rem;
+            }
+            
+            .day-title {
+                font-size: 1rem;
+            }
+            
+            .day-date {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .day-card {
+                flex-direction: column;
+            }
+            
+            .day-header {
+                writing-mode: horizontal-tb;
+                transform: none;
+                padding: 1rem;
+                min-width: auto;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .lesson-time {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <i class="fas fa-book"></i>
+                <span>МОЙ ДНЕВНИК</span>
+            </div>
+            <ul class="nav-links">
+                <li class="menu-close"><a href="javascript:void(0)" class="close-button">Назад</a></li>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="diary.html">Дневник</a></li>
+                <li><a href="marks.html">Оценки</a></li>
+                <li><a href="contacts.html">О нас</a></li>
+            </ul>
+            <div class="nav-right">
+                <!-- Бургер-меню -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            <div class="user-actions">
+                <div class="user-menu-trigger" id="userMenuTrigger">
+                    <div class="user-avatar">
+                        <img src="images/avatar.svg" alt="Аватар" onerror="this.style.display='none'">
+                    </div>
+                    <span class="user-name">Иванов Алексей</span>
+                    <div class="menu-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="popup-menu" id="popupMenu">
+                    <div class="popup-buttons">
+                        <a href="index.html" class="popup-btn">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.000000" height="24.000000" fill="none">
+                                <path d="M12 11.7596C14.8687 11.7596 17.1923 9.43606 17.1923 6.56731C17.1923 3.69856 14.8687 1.375 12 1.375C9.13125 1.375 6.80769 3.69856 6.80769 6.56731C6.80769 9.43606 9.13125 11.7596 12 11.7596ZM10.7149 14.1827C6.45288 14.1827 3 17.6356 3 21.8976C3 22.6072 3.57548 23.1827 4.2851 23.1827L19.7149 23.1827C20.4245 23.1827 21 22.6072 21 21.8976C21 17.6356 17.5471 14.1827 13.2851 14.1827L10.7149 14.1827Z" 
+                                fill="currentColor" fill-rule="nonzero" />
+                            </svg>
+
+                            <span class="popup-menu-title">Профиль</span>
+                        </a>
+                        <a href="index.html" class="popup-btn">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.000000" height="24.000000" fill="none">
+                                <path d="M12.002 1.125C11.2907 1.125 10.716 1.69955 10.716 2.41071L10.716 2.53929C7.78232 3.13393 5.572 5.72946 5.572 8.83929L5.572 9.71116C5.572 11.6437 4.91293 13.5201 3.7073 15.0308L3.31346 15.521C3.10851 15.7741 3 16.0875 3 16.4129C3 17.2004 3.63898 17.8393 4.42666 17.8393L19.5733 17.8393C20.361 17.8393 21 17.2004 21 16.4129C21 16.0875 20.8915 15.7741 20.6865 15.521L20.2927 15.0308C19.0911 13.5201 18.432 11.6437 18.432 9.71116L18.432 8.83929C18.432 5.72946 16.2217 3.13393 13.288 2.53929L13.288 2.41071C13.288 1.69955 12.7133 1.125 12.002 1.125ZM9.51038 19.7679C9.79571 20.8768 10.8044 21.6964 12.002 21.6964C13.1996 21.6964 14.2083 20.8768 14.4936 19.7679L9.51038 19.7679Z" 
+                                fill="currentColor" fill-rule="nonzero" />
+                            </svg>
+
+                            <span class="popup-menu-title">Уведомления</span>
+                        </a>
+                        <a href="index.html" class="popup-btn">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.000000" height="24.000000" fill="none">
+                                <path id="Форма 20" d="M9.86335 2.875L9.41396 5.18542C8.66184 5.46287 7.97687 5.85703 7.35906 6.36788L5.13888 5.60265L3 9.30504L4.77793 10.8507C4.63644 11.6394 4.63644 12.4282 4.77793 13.2169L3 14.7621L5.13933 18.4627L7.35683 17.6988C7.97457 18.2108 8.66028 18.6044 9.41396 18.8795L9.86291 21.1904L14.1375 21.1904L14.5776 18.9032C15.3259 18.6046 16.0139 18.2025 16.6414 17.6971L18.8611 18.4627L20.9982 14.7621L19.2221 13.2152C19.3651 12.4276 19.3651 11.64 19.2221 10.8525L21 9.3037L18.8607 5.6031L16.6432 6.36699C16.025 5.85579 15.3393 5.46223 14.586 5.18631L14.1371 2.8759L9.86335 2.875ZM11.9616 9.22106C12.3349 9.22767 12.693 9.30469 13.036 9.45213C13.379 9.59957 13.6813 9.80644 13.9429 10.0728C14.2046 10.3391 14.4061 10.645 14.5474 10.9906C14.6887 11.3361 14.7594 11.6955 14.7594 12.0689C14.7594 12.4422 14.6887 12.8017 14.5474 13.1472C14.4061 13.4927 14.2046 13.7987 13.9429 14.065C13.6813 14.3313 13.379 14.5382 13.036 14.6856C12.693 14.8331 12.3349 14.9101 11.9616 14.9167C11.584 14.9167 11.2207 14.8445 10.8718 14.7C10.5229 14.5555 10.2149 14.3498 9.94787 14.0828C9.68081 13.8158 9.47498 13.5079 9.33039 13.159C9.18579 12.8102 9.11344 12.4469 9.11332 12.0693L9.11332 12.0689C9.11332 11.6912 9.18559 11.3279 9.33014 10.979C9.47468 10.63 9.6805 10.322 9.94758 10.055C10.2147 9.78796 10.5227 9.5822 10.8716 9.43771C11.2206 9.29321 11.5839 9.221 11.9616 9.22106Z" 
+                                fill="currentColor" fill-rule="nonzero" />
+                            </svg>
+                            <span class="popup-menu-title">Настройки</span>
+                        </a>
+                        <a href="index.html" class="popup-btn">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.000000" height="24.000000" fill="none">
+                            <path d="M19.002 3L5.00195 3C3.89895 3 3.00195 3.897 3.00195 5L3.00195 9L5.00195 9L5.00195 5L19.002 5L19.002 19L5.00195 19L5.00195 15L3.00195 15L3.00195 19C3.00195 20.103 3.89895 21 5.00195 21L19.002 21C20.105 21 21.002 20.103 21.002 19L21.002 5C21.002 3.897 20.104 3 19.002 3Z" 
+                            fill="currentColor" fill-rule="nonzero" />
+                            <path d="M11 16L16 12L11 8L11 11.001L3 11.001L3 13.001L11 13.001L11 16Z" 
+                            fill="currentColor" fill-rule="nonzero" />
+                        </svg>
+
+                            <span class="popup-menu-title">Выйти</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+    <main class="container main-content">
+        <div class="page-header">
+            <h1 class="page-title">Мой дневник</h1>
+            <div class="week-navigation">
+                <button class="nav-btn prev-week">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="week-display">19 - 25 сентября 2023</div>
+                <button class="nav-btn next-week">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="date-selector" id="dateSelector">
+                    <button class="date-selector-btn">
+                        <i class="fas fa-calendar-alt"></i>
+                        Выбрать дату
+                    </button>
+                    <div class="date-selector-dropdown">
+                        <div class="calendar-header">
+                            <button class="calendar-nav-btn prev-month">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="current-month">Сентябрь 2023</div>
+                            <button class="calendar-nav-btn next-month">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="date-selector-calendar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-days" id="weekDays">
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-book"></i>
+                        <span>МОЙ ДНЕВНИК</span>
+                    </div>
+                    <p>Современная платформа для управления учебным процессом, объединяющая учеников, учителей и
+                        родителей.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Продукт</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#for-whom">Для кого</a></li>
+                        <li><a href="#pricing">Тарифы</a></li>
+                        <li><a href="#">Демо-версия</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">База знаний</a></li>
+                        <li><a href="#">Сообщество</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 МОЙ ДНЕВНИК. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="burger.js"></script>
+    <script src="diary.js"></script>
+    <script src="popup.js"></script> 
+</body>
+</html>

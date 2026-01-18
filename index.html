@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МОЙ ДНЕВНИК</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                <i class="fas fa-book"></i>
+                <span>МОЙ ДНЕВНИК</span>
+            </div>
+            <ul class="nav-links">
+                <li class="menu-close"><a href="javascript:void(0)" class="close-button">Назад</a></li>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="diary.html">Дневник</a></li>
+                <li><a href="marks.html">Оценки</a></li>
+                <li><a href="contacts.html">О нас</a></li>
+            </ul>
+            <div class="nav-right">
+                <!-- Бургер-меню -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="user-actions">
+                    <a href="login.html" class="btn btn-primary">Войти</a>
+                    <a href="register.html" class="btn btn-outline">Регистрация</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Современный школьный дневник для всех участников учебного процесса</h1>
+                    <p>Инновационная платформа, которая объединяет учеников, учителей и родителей, делая образовательный
+                        процесс проще, удобнее и эффективнее.</p>
+                    <div class="hero-buttons">
+                        <a href="register.html" class="btn btn-primary">Начать использовать</a>
+                        <a href="#features" class="btn btn-outline">Узнать больше</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="carousel-container">
+                        <div class="carousel">
+                            <div class="carousel-slide active">
+                                <img src="images/ScheduleImage.jpg" alt="Умное расписание">
+                                <div class="slide-caption">
+                                    <h3>Умное расписание</h3>
+                                    <p>Всегда актуальное расписание занятий с уведомлениями об изменениях</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/NoifityImage.jpg" alt="Мгновенные уведомления">
+                                <div class="slide-caption">
+                                    <h3>Мгновенные уведомления</h3>
+                                    <p>Получайте уведомления о новых оценках сразу после их выставления</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/ChatImage.jpg" alt="Общение в чате">
+                                <div class="slide-caption">
+                                    <h3>Встроенный мессенджер</h3>
+                                    <p>Общайтесь с учителями и одноклассниками без сторонних приложений</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-control prev" onclick="moveSlide(-1)">❮</button>
+                            <button class="carousel-control next" onclick="moveSlide(1)">❯</button>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="currentSlide(0)"></span>
+                            <span class="indicator" onclick="currentSlide(1)"></span>
+                            <span class="indicator" onclick="currentSlide(2)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Почему выбирают МОЙ ДНЕВНИК</h2>
+                <p>Инновационные возможности, которые делают учебный процесс проще и эффективнее</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Умное расписание</h3>
+                    <p>Доступ к актуальному расписанию уроков, изменениям и переносам занятий в реальном времени</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Детальная статистика</h3>
+                    <p>Наглядные отчеты об успеваемости с анализом прогресса и рекомендациями по улучшению</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Встроенный мессенджер</h3>
+                    <p>Удобное общение между учениками, учителями и родителями без необходимости использовать сторонние
+                        приложения</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Уведомления</h3>
+                    <p>Своевременные оповещения о новых оценках, домашних заданиях и важных событиях</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Доступ с любого устройства</h3>
+                    <p>Полнофункциональная веб-версия и мобильное приложение для iOS и Android</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Безопасность данных</h3>
+                    <p>Защита персональной информации в соответствии с современными стандартами безопасности</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="for-whom" id="for-whom">
+        <div class="container">
+            <div class="section-title">
+                <h2>Для кого создана наша платформа</h2>
+                <p>МОЙ ДНЕВНИК предлагает индивидуальные решения для каждой группы пользователей</p>
+            </div>
+            <div class="audience-cards">
+                <div class="audience-card">
+                    <div class="audience-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Для учащихся</h3>
+                    </div>
+                    <div class="audience-body">
+                        <ul>
+                            <li>Всегда актуальное расписание занятий</li>
+                            <li>Быстрый доступ к оценкам и домашним заданиям</li>
+                            <li>Удобное общение с учителями и одноклассниками</li>
+                            <li>Наглядная статистика успеваемости</li>
+                            <li>Мобильный доступ к учебным материалам</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-header">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Для учителей</h3>
+                    </div>
+                    <div class="audience-body">
+                        <ul>
+                            <li>Удобное ведение электронного журнала</li>
+                            <li>Автоматизация расчетов и отчетности</li>
+                            <li>Коммуникация с учениками и родителями</li>
+                            <li>Распределение учебных материалов</li>
+                            <li>Анализ успеваемости класса</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-header">
+                        <i class="fas fa-user-friends"></i>
+                        <h3>Для родителей</h3>
+                    </div>
+                    <div class="audience-body">
+                        <ul>
+                            <li>Полный контроль успеваемости ребенка</li>
+                            <li>Уведомления о новых оценках и заданиях</li>
+                            <li>Прямая связь с учителями</li>
+                            <li>Доступ к расписанию и школьным событиям</li>
+                            <li>Мониторинг посещаемости занятий</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Готовы сделать учебный процесс эффективнее?</h2>
+            <p>Присоединяйтесь к тысячам школ, которые уже используют МОЙ ДНЕВНИК для организации учебного процесса</p>
+            <div class="cta-buttons">
+                <a href="register.html" class="btn btn-primary">Зарегистрироваться</a>
+                <a href="#contacts" class="btn btn-outline">Связаться с нами</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-book"></i>
+                        <span>МОЙ ДНЕВНИК</span>
+                    </div>
+                    <p>Современная платформа для управления учебным процессом, объединяющая учеников, учителей и
+                        родителей.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Продукт</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#for-whom">Для кого</a></li>
+                        <li><a href="#pricing">Тарифы</a></li>
+                        <li><a href="#">Демо-версия</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">База знаний</a></li>
+                        <li><a href="#">Сообщество</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 МОЙ ДНЕВНИК. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="burger.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

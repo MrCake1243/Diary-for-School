@@ -1,0 +1,210 @@
+/* stats.css - Стили для карточек статистики */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.stat-card h3 {
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(161.57deg, rgba(67, 97, 238, 1), rgba(58, 12, 163, 1) 100%);
+    color: white;
+    margin-bottom:20px;
+    padding: 15px 10px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Общие стили для контейнеров статистики */
+.grades-stats,
+.attendance-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.grades-list,
+.attendance-list {
+    flex: 1;
+}
+
+.grade-item,
+.attendance-item {
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding: 0px 0px 15px 0px
+}
+
+.grade-circle,
+.attendance-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* Цвета для посещаемости */
+.visited { background: #3C1FB4; }
+.missed { background: #951FB4; }
+.sick { background: #1FAFB4; }
+.absent { background: #75142C; }
+
+.grade-item span,
+.attendance-item span {
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+/* Стили для диаграмм-пончиков */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.chart-header {
+    color: rgba(58, 12, 163, 255);
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.donut-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.chart-value {
+    font-weight: bold;
+    font-size: 1.8em;
+    color: rgba(58, 12, 163, 255);
+    display: block;
+}
+
+/* Стили для кнопок параметров */
+.params-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.param-btn {
+    padding: 20px 15px 20px 15px;
+    width: 175px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    text-align: center;
+    background-color: transparent;
+}
+
+.param-btn:hover {
+    border-color: var(--primary);
+}
+
+.param-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .grades-stats,
+    .attendance-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .chart-wrapper {
+        width: 140px;
+        height: 140px;
+        margin-top: 20px;
+    }
+    
+    .chart-value {
+        font-size: 1.6em;
+    }
+    
+    .param-btn {
+        padding: 12px 16px;
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card {
+        padding: 20px 15px;
+    }
+    
+    .stats-container {
+        padding: 0 10px;
+    }
+    
+    .chart-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .chart-value {
+        font-size: 1.4em;
+    }
+    
+    .chart-header {
+        font-size: 13px;
+    }
+    
+    .grade-item,
+    .attendance-item {
+        margin-bottom: 12px;
+    }
+    
+    .grade-circle,
+    .attendance-circle {
+        width: 20px;
+        height: 20px;
+    }
+}

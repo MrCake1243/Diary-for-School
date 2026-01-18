@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МОЙ ДНЕВНИК - Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Навигация */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            box-sizing: border-box;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .btn-register {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .role-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .role-option {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .role-option input {
+            display: none;
+        }
+
+        .role-option:hover {
+            border-color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-book"></i>
+                    <span>МОЙ ДНЕВНИК</span>
+                </div>
+                <ul class="nav-links">
+                    <li class="menu-close"><a href="javascript:void(0)" class="close-button">Назад</a></li>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="diary.html">Дневник</a></li>
+                    <li><a href="marks.html">Оценки</a></li>
+                    <li><a href="contacts.html">О нас</a></li>
+                </ul>
+                <div class="nav-right">
+                    <!-- Бургер-меню -->
+                    <div class="burger-menu" id="burgerMenu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="user-actions">
+                        <a href="login.html" class="btn btn-primary">Войти</a>
+                    </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <div style="max-width: 500px; margin: 0 auto;">
+            <h1 class="page-title" style="text-align: center;">Регистрация</h1>
+
+            <div class="card">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Выберите роль</label>
+                        <div class="role-selector">
+                            <label class="role-option">
+                                <input type="radio" name="role" value="student">
+                                <i class="fas fa-user-graduate" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                <div>Ученик</div>
+                            </label>
+                            <label class="role-option">
+                                <input type="radio" name="role" value="teacher">
+                                <i class="fas fa-chalkboard-teacher"
+                                    style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                                <div>Учитель</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullname" class="form-label">ФИО</label>
+                        <input type="text" id="fullname" class="form-control" placeholder="Введите ваше полное имя">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Введите ваш email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" id="password" class="form-control" placeholder="Придумайте пароль">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">Подтверждение пароля</label>
+                        <input type="password" id="confirm-password" class="form-control"
+                            placeholder="Повторите пароль">
+                    </div>
+
+                    <button type="submit" class="btn btn-register" style="width: 100%;">Зарегистрироваться</button>
+                </form>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p>Уже есть аккаунт? <a href="login.html"
+                        style="color: var(--primary); text-decoration: none;">Войти</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-book"></i>
+                        <span>МОЙ ДНЕВНИК</span>
+                    </div>
+                    <p>Современная платформа для управления учебным процессом, объединяющая учеников, учителей и
+                        родителей.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Продукт</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#for-whom">Для кого</a></li>
+                        <li><a href="#pricing">Тарифы</a></li>
+                        <li><a href="#">Демо-версия</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Помощь</a></li>
+                        <li><a href="#">База знаний</a></li>
+                        <li><a href="#">Сообщество</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 МОЙ ДНЕВНИК. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
