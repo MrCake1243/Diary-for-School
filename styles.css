@@ -905,4 +905,14 @@ footer {
     .hero-buttons, .cta-buttons {
         flex-direction: column;
     }
+
+}
+@media (max-width: 490px) {
+    .user-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn-outline {
+        margin-left: 0;
+    }
 }
